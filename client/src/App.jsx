@@ -63,13 +63,13 @@ class App extends Component {
     let sw = {...this.state.switches}
     sw[name] = event.target.checked
     let filtered = this.state.data.filter(datum => datum.pageTitle.toLowerCase().indexOf(this.state.filter) >= 0 && sw[datum.tableType])
-    this.setState({ switches: {...sw}, filteredData: filtered})
+    this.setState({ switches: {...sw}, filteredData: filtered, page: 0})
   }
 
   handleSearchChange = () => event => {
     let filter = event.target.value.toLowerCase()
     let filtered = this.state.data.filter(datum => datum.pageTitle.toLowerCase().indexOf(filter) >= 0 && this.state.switches[datum.tableType])
-    this.setState({ filteredData: filtered, filter: filter })
+    this.setState({ filteredData: filtered, filter: filter, page: 0})
   }
 
   handleInputChange = () => event => {
