@@ -6,40 +6,44 @@ const app = express()
 const port = process.env.PORT || 5000
 
 // process data
-const dataString = fs.readFileSync('sample','utf8').split('\n')
+const dataString = fs.readFileSync('sample', 'utf8').split('\n')
 let data = []
-for ( let i = 0; i < dataString.length; i++ ) {
-    try {
-      let datum = JSON.parse(dataString[i])
+for (let i = 0; i < dataString.length; i++) {
+  try {
+    let datum = JSON.parse(dataString[i])
 
-      if ( datum.tableOrientation === "HORIZONTAL" ) {
-        let reversedRelation = []
-        for ( let j = 0; j < datum.relation[0].length; j++ ) {
-          let row = []
-          for ( let i = 0; i < datum.relation.length; i++ ) {
-              row.push(datum.relation[i][j])
-          }
-          reversedRelation.push(row)
+    if (datum.tableOrientation === 'HORIZONTAL') {
+      let reversedRelation = []
+      for (let j = 0; j < datum.relation[0].length; j++) {
+        let row = []
+        for (let i = 0; i < datum.relation.length; i++) {
+          row.push(datum.relation[i][j])
         }
-        datum.relation = reversedRelation
+        reversedRelation.push(row)
       }
-
-      data.push((({ relation, pageTitle, url, tableType, tableNum }) => ({ relation, pageTitle, url, tableType, tableNum }))(datum))
-    } catch (e) {
+      datum.relation = reversedRelation
     }
+
+    data.push(
+      (({ relation, pageTitle, url, tableType, tableNum }) => ({
+        relation,
+        pageTitle,
+        url,
+        tableType,
+        tableNum
+      }))(datum)
+    )
+  } catch (e) {}
 }
 
 // endpoint for client to get data
 app.get('/api/data', (req, res) => {
   res.send({ data: data })
-});
+})
 
 if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')))
-
-  // Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
+  app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
   })
 }

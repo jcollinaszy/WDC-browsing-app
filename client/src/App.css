@@ -77,3 +77,8 @@ body {
   text-align : center;
   margin-bottom: 0px;
 }
+
+.modalTable {
+  width: auto !IMPORTANT;
+  margin: auto;
+}
