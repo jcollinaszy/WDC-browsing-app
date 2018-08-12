@@ -1,0 +1,79 @@
+.App {
+  text-align: center;
+  font-family: Roboto;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  height: 120px;
+  padding: 20px;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+body {
+  background-color: #e3f2fd;
+}
+
+.naviIcon {
+  margin-top: 20px;
+}
+
+.currentPage {
+  width: 30px;
+}
+
+.naviIcon:hover {
+  cursor: pointer;
+}
+
+.mainRow {
+  background-color: #ffffff;
+  transition: background-color 250ms linear;
+}
+
+.mainRow:hover {
+  cursor: pointer;
+  background-color: #90caf9;
+}
+
+.tableSpace {
+  height: 520px;
+}
+
+.tableMain {
+  background-color: #ffffff;
+}
+
+.tableHead {
+  background-color: #eeeeee;
+}
+
+.modalHeader {
+  padding: 20px;
+  background-color:#e3f2fd;
+}
+
+.modalTitle {
+  text-align: center;
+}
+
+.tableTitle {
+  text-align : center;
+  margin-bottom: 0px;
+}
