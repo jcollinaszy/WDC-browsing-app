@@ -67,6 +67,7 @@ class App extends Component {
         datum.pageTitle.toLowerCase().indexOf(this.state.filter) >= 0 &&
         sw[datum.tableType]
     )
+    this.changePage(0)
     this.setState({ switches: { ...sw }, filteredData: filtered, page: 0 })
   }
 
@@ -77,7 +78,8 @@ class App extends Component {
         datum.pageTitle.toLowerCase().indexOf(filter) >= 0 &&
         this.state.switches[datum.tableType]
     )
-    this.setState({ filteredData: filtered, filter: filter, page: 0 })
+    this.changePage(0)
+    this.setState({ filteredData: filtered, filter: filter })
   }
 
   handleInputChange = () => event => {
